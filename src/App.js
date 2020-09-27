@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import LandingPage from './layouts/landingPage/landingPage'
+import Login from './layouts/login/login'
+import SignupUser from './layouts/signupUser/signupUser'
+import SignupCreator from './layouts/signupCreator/signupCreator'
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // <LandingPage/>
+    // <Login/>
+    <SignupUser/>
+    //<SignupCreator/>
+  )
 }
 
 export default App;
