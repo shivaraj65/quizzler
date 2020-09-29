@@ -1,0 +1,19 @@
+.nav-padding{
+   padding-top:5.5rem;
+}
+/* .creator-details{
+    padding-left:20px;
+    padding-bottom: 5px;
+} */
+.margin-auto{
+    position: relative;
+    float: right;
+    padding-right: 20px;
+}
+
+
+@media(max-width:768px){
+   
+}
+
+

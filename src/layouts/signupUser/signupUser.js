@@ -43,7 +43,7 @@ const SignupUser=()=>{
             <div className="text-center" id="login">
             <form className="form-signin">
                 <img className="mb-3" src={logo} alt="" width="120" height="60"/>
-                <h1 className="h3 mb-3 font-weight-bold text-primary">SIGNUP</h1>
+                <h1 className="h3 mb-3 font-weight-bold text-primary">USER SIGNUP</h1>
                 <label className="sr-only">Email address</label>
                 <input 
                     type="email" 

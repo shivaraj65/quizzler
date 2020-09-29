@@ -9,6 +9,7 @@ import Creator from './sections/creator/creator'
 import Contact from './sections/contact/contact'
 import Footer from './sections/footer/footer'
 
+
 const LandingPage=()=>{
  return(
     <div id="page-top">

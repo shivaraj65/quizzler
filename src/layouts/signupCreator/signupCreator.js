@@ -5,6 +5,8 @@ import Navbar from './navbar/navbarLanding'
 const SignupCreator=()=>{
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
+    const [name,setName]=useState("")
+    const [phoneNumber,setPhoneNumber]=useState("")
     const [passwordTest, setpasswordTest] = useState(null)
 
     
@@ -39,7 +41,7 @@ const SignupCreator=()=>{
             <div className="text-center" id="login">
             <form className="form-signin">
                 <img className="mb-3" src={logo} alt="" width="120" height="60"/>
-                <h1 className="h3 mb-3 font-weight-bold text-primary">SIGNUP</h1>
+                <h1 className="h3 mb-3 font-weight-bold text-primary">CREATOR SIGNUP</h1>
                 <label className="sr-only">Email address</label>
                 <input 
                     type="email" 
@@ -53,6 +55,29 @@ const SignupCreator=()=>{
                         setEmail(e.target.value)
                     }}    
                     />
+                <label  className="sr-only">Name</label>
+                <input 
+                type="text"
+                className="form-control text-primary"
+                placeholder="User Name"
+                value={name}
+                required
+                onChange={(e)=>{
+                    setName(e.target.value)
+                }}
+                />
+                <label className="sr-only">Phone Number</label>
+                <input
+                    type="tel"
+                    className="form-control text-primary"
+                    placeholder="phone Number"
+                    value={phoneNumber}
+                    maxLength="10"
+                    required
+                    onChange={(e)=>{
+                        setPhoneNumber(e.target.value)
+                    }}
+                />
                 <label className="sr-only">Password</label>
                 <input 
                     type="password" 

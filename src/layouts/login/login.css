@@ -13,6 +13,9 @@ body {
   padding-bottom: 40px;
   background-color: #ecccb28a;
 }
+a:hover{
+  cursor: pointer;
+}
 
 .form-signin {
   width: 100%;
