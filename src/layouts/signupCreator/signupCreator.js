@@ -1,6 +1,12 @@
 import React,{useState} from 'react'
+import axios from 'axios';
+import * as QueryString from "query-string";
 import logo from '../../assets/images/quizzler logo.png'
 import Navbar from './navbar/navbarLanding'
+
+
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button'
 
 const SignupCreator=()=>{
     const [email,setEmail]=useState("")
@@ -9,7 +15,11 @@ const SignupCreator=()=>{
     const [phoneNumber,setPhoneNumber]=useState("")
     const [passwordTest, setpasswordTest] = useState(null)
 
-    
+    const [popupContent,setPopupContent]=useState("")
+    // states and function for the modal
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);    
     
     const passwordTestfunc=(data)=>{
         if(!data.match(/[a-z]/g)){
@@ -35,13 +45,46 @@ const SignupCreator=()=>{
         }
       }
 
+
+      //submit handler for the website signup
+      const submitHandlerSignup=(event)=>{
+        event.preventDefault();
+        console.log("submit pressed")
+        if(passwordTest===true){
+            console.log("submit processing");
+            // axios 
+            let formData = {Email: email,Password: password,Name:name,PhoneNumber:phoneNumber};    
+            // console.log(QueryString.stringify(formData));  
+            //header configuration for the CORS
+            const config  = {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Access-Control-Allow-Origin':'*'
+                    }}
+                    axios.post('http://localhost:3001/signupWebsiteCreator', 
+                    QueryString.stringify(formData),config)
+                    .then(function (response) {
+                        console.log(response.data);
+                        setPopupContent(response.data);
+                        handleShow();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        setPopupContent("Oh snap! Something went wrong, try again.");
+                        handleShow();
+                    });
+        }else{
+            console.log("submit not processed")
+        }
+    }
+
     return(
         <div>
             <Navbar/>
             <div className="text-center" id="login">
-            <form className="form-signin">
-                <img className="mb-3" src={logo} alt="" width="120" height="60"/>
-                <h1 className="h3 mb-3 font-weight-bold text-primary">CREATOR SIGNUP</h1>
+            <form className="form-signin card"  onSubmit={submitHandlerSignup}>
+                {/* <img className="m-auto" src={logo} alt=""  height="60"/> */}
+                <h1 className="h3 my-3 font-weight-bold text-primary">CREATOR SIGNUP</h1>
                 <label className="sr-only">Email address</label>
                 <input 
                     type="email" 
@@ -94,15 +137,33 @@ const SignupCreator=()=>{
                 <p id="password-validation-text" className="text-danger"></p>
                 <button 
                     className="btn btn-lg btn-primary btn-block" 
-                    type="button"
-                    onClick={()=>{
-                        
-                    }}
+                    type="submit"
                 >Sign up</button>
-                
-                <p className=" mt-4 text-secondary">A Two step auth process will be done to confirm that it is you.</p>
+                <hr className="mb-1" />
+                <p className=" mt-2 text-secondary">A Three step Auth process will be done to confirm that it is you.</p>
             </form>
         </div>
+               {/* popup  */}
+               <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Quizzler</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            {popupContent}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Close
+          </Button>
+          {/* <Button variant="primary">Understood</Button> */}
+        </Modal.Footer>
+      </Modal>
         </div>
     )
 }
