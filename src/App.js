@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   HashRouter,
   Switch,
   Route,
@@ -20,7 +19,7 @@ import './App.css';
 
 function App() {
   return (
-    <HashRouter basename="/">
+    <HashRouter>
     <Switch>
       <Route exact path="/">
         <LandingPage/>

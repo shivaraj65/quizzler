@@ -9,7 +9,7 @@ const Navbar=()=>{
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-primary-custom fixed-top py-3" id="mainNav">
             <div className="container">
-                <a className="navbar-brand  text-primary" href="#page-top">Quizzler</a>
+                <a className="navbar-brand  text-primary" href="/">Quizzler</a>
                 <button className="navbar-toggler navbar-toggler-right text-primary" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto my-2 my-lg-0">
@@ -25,7 +25,7 @@ const Navbar=()=>{
                             <a
                                 className="nav-link text-dark"
                                 onClick={()=>{
-                                    redirect("/#contact")
+                                    redirect("/")
                                 }}
                             >Contact</a></li>
                         <li  className="nav-item">
