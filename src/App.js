@@ -20,7 +20,7 @@ import './App.css';
 
 function App() {
   return (
-    <HashRouter>
+    <HashRouter basename="/">
     <Switch>
       <Route exact path="/">
         <LandingPage/>
