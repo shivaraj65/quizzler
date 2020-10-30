@@ -25,23 +25,23 @@ function App() {
       <Route exact path="/">
         <LandingPage/>
       </Route>
-      <Route exact path="/login">
+      <Route path="/login">
         <Login/>
       </Route>
-      <Route exact path="/user-signup">
+      <Route path="/user-signup">
         <SignupUser/>
       </Route>
-      <Route exact path="/creator-signup">
+      <Route path="/creator-signup">
         <SignupCreator/>
       </Route>
-      <Route exact path="/cl/:cid/:cname">
+      <Route path="/cl/:cid/:cname">
       {/* <Route exact path="/creator-dashboard/:creatorID"> */}
         <CreatorLobby/> 
       </Route>
-      <Route exact path="/ul/:uid/:uname">
+      <Route path="/ul/:uid/:uname">
         <UserLobby/>
       </Route>
-      <Route exact path="/q/:quizID/:uid/:uname">
+      <Route path="/q/:quizID/:uid/:uname">
         <Quizzler/>
       </Route>
     </Switch>
