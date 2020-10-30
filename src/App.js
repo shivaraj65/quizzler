@@ -12,6 +12,9 @@ import SignupUser from './layouts/signupUser/signupUser'
 import SignupCreator from './layouts/signupCreator/signupCreator'
 
 import CreatorLobby from './layouts/creatorLobby/creatorLobby'
+import UserLobby from './layouts/userLobby/UserLobby'
+
+import Quizzler from './layouts/Quizzler/Quizzler'
 import './App.css';
 
 function App() {
@@ -30,9 +33,15 @@ function App() {
       <Route exact path="/creator-signup">
         <SignupCreator/>
       </Route>
-      <Route exact path="/creator-dashboard">
+      <Route exact path="/cl/:cid/:cname">
       {/* <Route exact path="/creator-dashboard/:creatorID"> */}
         <CreatorLobby/> 
+      </Route>
+      <Route exact path="/ul/:uid/:uname">
+        <UserLobby/>
+      </Route>
+      <Route exact path="/q/:quizID/:uid/:uname">
+        <Quizzler/>
       </Route>
     </Switch>
     </Router>

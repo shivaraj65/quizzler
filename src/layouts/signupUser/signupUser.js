@@ -67,12 +67,13 @@ const SignupUser=()=>{
                          'Content-Type': 'application/x-www-form-urlencoded',
                          'Access-Control-Allow-Origin':'*'
                      }}
-                     axios.post('http://localhost:3001/signupGoogleUser', 
+                     axios.post('https://quizzlerserver.herokuapp.com/signupGoogleUser', 
                      QueryString.stringify(formData),config)
                      .then(function (response) {
                         //  console.log(response.data);
                          setPopupContent(response.data);
                          handleShow();
+                        
                      })
                      .catch(function (error) {
                         setPopupContent("Oh snap! Something went wrong, try again.");
@@ -98,16 +99,24 @@ const SignupUser=()=>{
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'Access-Control-Allow-Origin':'*'
                     }}
-                    axios.post('http://localhost:3001/signupWebsiteUser', 
+                    axios.post('https://quizzlerserver.herokuapp.com/signupWebsiteUser', 
                     QueryString.stringify(formData),config)
                     .then(function (response) {
                         console.log(response.data);
                         setPopupContent(response.data);
                         handleShow();
+                        //cleaning up the fields
+                        setEmail("")
+                        setPassword("")
+                        setFname("")
                     })
                     .catch(function (error) {
                         setPopupContent("Oh snap! Something went wrong, try again.");
                         handleShow();
+                        //cleaning up the fields
+                        setEmail("")
+                        setPassword("")
+                        setFname("")
                     });
         }else{
             console.log("submit not processed")

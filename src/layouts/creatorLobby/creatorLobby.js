@@ -37,9 +37,9 @@ const CreatorLobby=()=>{
         setCreateName("")
         setCreateRelatedTo("")
         setCreateNoOfQuestions("")
-        setCreatePrivate("")
+        setCreatePrivate(false)
         setCreateTime("")
-        setCreatePrivate("")
+        setCreateQuestions("")
         //setting the modal screen back to the first page
         setCreateSwitchContent(1)
     } 
@@ -87,7 +87,7 @@ const CreatorLobby=()=>{
                 })
             }
             // console.log(arraydata)
-            setCreateQuestions(arraydata)
+            setCreateQuestions([...arraydata])
             setCreateSwitchContent(2)
         }else{
             alert("Fill all the Fields First !!")
@@ -98,23 +98,31 @@ const CreatorLobby=()=>{
     const submitCreate=()=>{
         // axios 
         let formData = {CreatorID:"warfreak",QuizName:createName,QuizRelatedTo:createRelatedTo,QuizNOofQuestions:createNoOfQuestions,Time:createTime,Private:createPrivate,Questions:createQuestions};    
-        // console.log(QueryString.stringify(formData));  
         //header configuration for the CORS
         const config  = {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin':'*'
                 }}
         axios.post('http://localhost:3001/createQuiz', 
-        QueryString.stringify(formData),config)
+        formData,config) 
         .then(function (response) {
-            alert(response)
+            console.log(response)
+            setCreateQuizPopup(false)
+            // resetting all the fields to empty
+            setCreateName("")
+            setCreateRelatedTo("")
+            setCreateNoOfQuestions("")
+            setCreatePrivate(false)
+            setCreateTime("")
+            setCreateQuestions("")
+            //setting the modal screen back to the first page
+            setCreateSwitchContent(1)
+            alert(response.data)
         })
         .catch(function (error) {
             alert("Check your Network Connection and try agin.")
         });
-
-
     }
 
     //function for the delete Quiz submit
@@ -128,16 +136,45 @@ const CreatorLobby=()=>{
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Access-Control-Allow-Origin':'*'
                 }}
-                axios.post('http://localhost:3001/createQuiz', 
-                QueryString.stringify(formData),config)
-                .then(function (response) {
-                    alert(response)
-                })
-                .catch(function (error) {
-                    alert("Check your Network Connection and try agin.")
-                });
+        axios.post('http://localhost:3001/deleteQuiz', 
+        QueryString.stringify(formData),config)
+        .then(function (response) {
+            alert(response)
+        })
+        .catch(function (error) {
+            alert("Check your Network Connection and try agin.")
+        });
     }
 
+    //function for the info global modal submit
+        const submitInfoGlobalQuiz=()=>{
+             // axios 
+            let formData = {QuizID:infoGlobalQuizID,CreatroID:"warfreak"};    
+            // console.log(QueryString.stringify(formData));  
+            //header configuration for the CORS
+            const config  = {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Access-Control-Allow-Origin':'*'
+                    }}
+            axios.post('http://localhost:3001/infoQuiz', 
+            QueryString.stringify(formData),config)
+            .then(function (response) {
+                alert(response)
+            })
+            .catch(function (error) {
+                alert("Check your Network Connection and try agin.")
+            });
+        }
+    
+    //function for the individual info button submit
+    const submitInfoIndividual=(QuizID)=>{
+
+    }
+    //function for the induvidual trash button submit
+    const submitDeleteIndividual=(QuiID)=>{
+
+    }
 
     return(
         <div className="creatorlobby-bg pb-4">
@@ -192,42 +229,6 @@ const CreatorLobby=()=>{
                                 <td className="text-secondary">Questions</td>
                                 <td className="text-secondary text-center">Details</td>
                                 <td  className="text-secondary text-center">Remove</td>
-                            </tr>
-                            <tr>
-                                <td className="text-dark">1</td>
-                                <td className="text-primary">39239</td>
-                                <td className="text-primary">kkefbk</td>
-                                <td className="text-primary">private</td>
-                                <td className="text-primary">20</td>
-                                <td><button className="btn btn-block btn-info">INFO</button></td>
-                                <td className="text-center"><button className="btn btn-block btn-danger">Trash</button></td>
-                            </tr>
-                            <tr>
-                                <td className="text-dark">1</td>
-                                <td className="text-primary">39239</td>
-                                <td className="text-primary">kkefbk</td>
-                                <td className="text-primary">private</td>
-                                <td className="text-primary">20</td>
-                                <td><button className="btn btn-block btn-info">INFO</button></td>
-                                <td className="text-center"><button className="btn btn-block btn-danger">Trash</button></td>
-                            </tr>
-                            <tr>
-                                <td className="text-dark">1</td>
-                                <td className="text-primary">39239</td>
-                                <td className="text-primary">kkefbk</td>
-                                <td className="text-primary">private</td>
-                                <td className="text-primary">20</td>
-                                <td><button className="btn btn-block btn-info">INFO</button></td>
-                                <td className="text-center"><button className="btn btn-block btn-danger">Trash</button></td>
-                            </tr>
-                            <tr>
-                                <td className="text-dark">1</td>
-                                <td className="text-primary">39239</td>
-                                <td className="text-primary">kkefbk</td>
-                                <td className="text-primary">private</td>
-                                <td className="text-primary">20</td>
-                                <td><button className="btn btn-block btn-info">INFO</button></td>
-                                <td className="text-center"><button className="btn btn-block btn-danger">Trash</button></td>
                             </tr>
                             <tr>
                                 <td className="text-dark">1</td>
@@ -319,8 +320,10 @@ const CreatorLobby=()=>{
                                 type="checkbox"
                                 onChange={(e)=>{
                                     if(createPrivate===false){
+                                        // console.log("toggling private true")
                                         setCreatePrivate(true)
                                     }else{
+                                        // console.log("toggling private false")
                                         setCreatePrivate(false)
                                     }
                                 }}
@@ -362,8 +365,10 @@ const CreatorLobby=()=>{
                                     value={createQuestions[index].QImageLink}
                                     onChange={(e)=>{
                                         let payload=[...createQuestions]
+                                        // console.log(payload)
                                         payload[index].QImageLink=e.target.value
                                         setCreateQuestions(payload)
+                                        // console.log(createQuestions)
                                     }}
                                     className="form-control text-info" 
                                     placeholder="optional:- link to load the image question"/>
@@ -427,7 +432,7 @@ const CreatorLobby=()=>{
                                     let payload=[...createQuestions]
                                     payload[index].answer=e.target.value
                                     setCreateQuestions(payload)
-                                    console.log(createQuestions);
+                                    // console.log(createQuestions);
                                 }}
                                 >
                                 <option>answer</option>
@@ -451,6 +456,7 @@ const CreatorLobby=()=>{
                                         if(createQuestions[i-1].question !=="" && createQuestions[i-1].option1 !=="" && createQuestions[i-1].option2 !=="" && createQuestions[i-1].option3 !=="" && createQuestions[i-1].option4 !=="" && createQuestions[i-1].answer !=="" && createQuestions[i-1].answer !=="answer"){
                                             // submit
                                             submitCreate();
+                                            break;
                                         }else{
                                             alert("Fill all the fields in the Question "+ i + " to Create the quiz")
                                             break;
@@ -467,7 +473,7 @@ const CreatorLobby=()=>{
                                     setCreateName("")
                                     setCreateRelatedTo("")
                                     setCreateNoOfQuestions("")
-                                    setCreatePrivate("")
+                                    setCreatePrivate(false)
                                     setCreateTime("")
                                     setCreatePrivate("")
                                     //closing the modal
@@ -492,7 +498,7 @@ const CreatorLobby=()=>{
             keyboard={false}
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title><span className="text-primary">Delete Quiz</span></Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -549,7 +555,7 @@ const CreatorLobby=()=>{
             keyboard={false}
             centered
             >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title><span className="text-primary">Quiz INFO</span></Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -579,6 +585,7 @@ const CreatorLobby=()=>{
                                 alert("enter a quiz Id to get the Quiz info.")
                             }else{
                                 //submit
+                                submitInfoGlobalQuiz()
                             }
                             }}>
                             Get Info
@@ -596,6 +603,24 @@ const CreatorLobby=()=>{
             </Modal.Body>
         </Modal>
 
+        
+
+        {/*modal for the outputs of info */}
+        {/* <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+            centered
+            >
+            <Modal.Header>
+            <Modal.Title><span className="text-primary">INFO</span></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {popupContent}
+            </Modal.Body>
+        </Modal> */}
+
 
         </div>
     )
@@ -605,4 +630,3 @@ export default React.memo(CreatorLobby)
 
 //modal for the individual info and trash...
 //alse the submit function for the individual info and the trash...
-//create the submit function for the info global...

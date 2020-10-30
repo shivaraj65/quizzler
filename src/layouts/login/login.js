@@ -5,11 +5,17 @@ import logo from '../../assets/images/quizzler logo.png'
 import Navbar from './navbar/navbarLanding'
 import axios from 'axios'
 import * as QueryString from "query-string"
+import { useHistory } from "react-router-dom";
 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 const Login =()=>{
+    let history = useHistory();
+    const redirect=(path)=>{
+        history.push(path)
+    }
+
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const [userType, setUserType] = useState("user")
@@ -39,12 +45,16 @@ const Login =()=>{
                          'Content-Type': 'application/x-www-form-urlencoded',
                          'Access-Control-Allow-Origin':'*'
                      }}
-                     axios.post('http://localhost:3001/loginGoogleUser', 
+                     axios.post('https://quizzlerserver.herokuapp.com/loginGoogleUser', 
                      QueryString.stringify(formData),config)
                      .then(function (response) {
                         //  console.log(response.data);
-                         setPopupContent(response.data);
-                         handleShow();
+                        if(response.data.id){
+                            redirect("/ul/"+response.data.id+"/"+response.data.name);
+                        }else{
+                            setPopupContent(response.data);
+                            handleShow();
+                        }                                                 
                      })
                      .catch(function (error) {
                         setPopupContent("Oh snap! Something went wrong, try again.");
@@ -69,24 +79,33 @@ const submitHandlerLogin=(event)=>{
                      'Access-Control-Allow-Origin':'*'
                  }}
         if(userType==="user"){
-            axios.post('http://localhost:3001/loginWebsiteUser', 
+            axios.post('https://quizzlerserver.herokuapp.com/loginWebsiteUser', 
             QueryString.stringify(formData),config)
             .then(function (response) {
                 // console.log(response.data);
                 setPopupContent(response.data);
-                handleShow();
+                //redirect to the userdash
+                if(response.data.id){
+                    redirect("/ul/"+response.data.id+"/"+response.data.name);
+                }else{
+                    setPopupContent(response.data)
+                    handleShow()
+                }
             })
             .catch(function (error) {
                 setPopupContent("Oh snap! Something went wrong, Try again.");
                 handleShow();
             });
         }else if(userType==="creator"){
-            axios.post('http://localhost:3001/loginWebsiteCreator', 
+            axios.post('https://quizzlerserver.herokuapp.com/loginWebsiteCreator', 
             QueryString.stringify(formData),config)
             .then(function (response) {
-                // console.log(response.data);
-                setPopupContent(response.data);
-                handleShow();
+                if(response.data.id){
+                    redirect("/cl/"+response.data.id+"/"+response.data.name);
+                }else{
+                    setPopupContent(response.data);
+                    handleShow();
+                }                
             })
             .catch(function (error) {
                 setPopupContent("Oh snap! Something went wrong, Try again.");

@@ -61,17 +61,27 @@ const SignupCreator=()=>{
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'Access-Control-Allow-Origin':'*'
                     }}
-                    axios.post('http://localhost:3001/signupWebsiteCreator', 
+                    axios.post('https://quizzlerserver.herokuapp.com/signupWebsiteCreator', 
                     QueryString.stringify(formData),config)
                     .then(function (response) {
                         console.log(response.data);
                         setPopupContent(response.data);
                         handleShow();
+                        //cleaning up the fields
+                        setName("")
+                        setPassword("")
+                        setPhoneNumber("")
+                        setEmail("")
                     })
                     .catch(function (error) {
                         console.log(error);
                         setPopupContent("Oh snap! Something went wrong, try again.");
                         handleShow();
+                        //cleaning up the fields
+                        setName("")
+                        setPassword("")
+                        setPhoneNumber("")
+                        setEmail("")
                     });
         }else{
             console.log("submit not processed")
