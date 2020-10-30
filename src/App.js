@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
+  HashRouter,
   Switch,
   Route,
   Link
@@ -19,7 +20,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
     <Switch>
       <Route exact path="/">
         <LandingPage/>
@@ -44,7 +45,7 @@ function App() {
         <Quizzler/>
       </Route>
     </Switch>
-    </Router>
+    </HashRouter>
   )
 }
 
