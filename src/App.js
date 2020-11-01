@@ -15,6 +15,7 @@ import CreatorLobby from './layouts/creatorLobby/creatorLobby'
 import UserLobby from './layouts/userLobby/UserLobby'
 
 import Quizzler from './layouts/Quizzler/Quizzler'
+import MailRedirect from './layouts/mailredirect/MailRedirect'
 import './App.css';
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
       </Route>
       <Route path="/q/:quizID/:uid/:uname">
         <Quizzler/>
+      </Route>
+      <Route path="/mailauth/:id">
+        <MailRedirect/>
       </Route>
     </Switch>
     </HashRouter>

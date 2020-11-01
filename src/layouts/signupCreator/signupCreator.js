@@ -48,6 +48,7 @@ const SignupCreator=()=>{
 
       //submit handler for the website signup
       const submitHandlerSignup=(event)=>{
+        document.getElementById("btnSubmitCreator").disabled = true;
         event.preventDefault();
         console.log("submit pressed")
         if(passwordTest===true){
@@ -72,6 +73,7 @@ const SignupCreator=()=>{
                         setPassword("")
                         setPhoneNumber("")
                         setEmail("")
+                        document.getElementById("btnSubmitCreator").disabled = false;
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -82,6 +84,7 @@ const SignupCreator=()=>{
                         setPassword("")
                         setPhoneNumber("")
                         setEmail("")
+                        document.getElementById("btnSubmitCreator").disabled = false;
                     });
         }else{
             console.log("submit not processed")
@@ -146,6 +149,7 @@ const SignupCreator=()=>{
                     />
                 <p id="password-validation-text" className="text-danger"></p>
                 <button 
+                    id="btnSubmitCreator"
                     className="btn btn-lg btn-primary btn-block" 
                     type="submit"
                 >Sign up</button>
@@ -153,8 +157,8 @@ const SignupCreator=()=>{
                 <p className=" mt-2 text-secondary">A Three step Auth process will be done to confirm that it is you.</p>
             </form>
         </div>
-               {/* popup  */}
-               <Modal
+      {/* popup  */}
+      <Modal
         show={show}
         onHide={handleClose}
         backdrop="static"

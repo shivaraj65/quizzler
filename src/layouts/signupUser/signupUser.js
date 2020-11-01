@@ -86,10 +86,10 @@ const SignupUser=()=>{
 
 //submit handler for the website signup
       const submitHandlerSignup=(event)=>{
-        event.preventDefault();
-        console.log("submit pressed")
+        document.getElementById("btnSubmitUser").disabled = true;
+        // console.log("submit pressed")
         if(passwordTest===true){
-            console.log("submit processing");
+            // console.log("submit processing");
             // axios 
             let formData = {Email: email,Password: password,Name:fname};    
             // console.log(QueryString.stringify(formData));  
@@ -102,13 +102,14 @@ const SignupUser=()=>{
                     axios.post('https://quizzlerserver.herokuapp.com/signupWebsiteUser', 
                     QueryString.stringify(formData),config)
                     .then(function (response) {
-                        console.log(response.data);
+                        // console.log(response.data);
                         setPopupContent(response.data);
                         handleShow();
                         //cleaning up the fields
                         setEmail("")
                         setPassword("")
                         setFname("")
+                        document.getElementById("btnSubmitUser").disabled = false;
                     })
                     .catch(function (error) {
                         setPopupContent("Oh snap! Something went wrong, try again.");
@@ -117,6 +118,7 @@ const SignupUser=()=>{
                         setEmail("")
                         setPassword("")
                         setFname("")
+                        document.getElementById("btnSubmitUser").disabled = false;
                     });
         }else{
             console.log("submit not processed")
@@ -172,6 +174,7 @@ const SignupUser=()=>{
                 
                 <p id="password-validation-text" className="text-danger"></p>
                 <button 
+                    id="btnSubmitUser"
                     className="btn btn-lg btn-primary btn-block" 
                     type="submit"
                     onClick={()=>{

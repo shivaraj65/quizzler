@@ -14,7 +14,7 @@ const Creator =()=>{
                     <hr className="divider light my-4" />
                     <h5 className="text-white-50 mb-2">SHIVARAJ SHANKAR</h5>
                     <h5 className="text-white-50 mb-4 pb-2">SVS College of Engineering</h5>
-                    <h6 className="text-white-50 mb-2">Get out of the console.log or printf or system.out ... they were just used for Debugging.</h6>
+                    {/* <h6 className="text-white-50 mb-2">Get out of the console.log or printf or system.out ... they were just used for Debugging.</h6> */}
                     <h4 className="text-white-50 my-3">"Talent is cheap; Dedication is Expensive. It will cost you your life." <span>-Irving Stone</span></h4>
                     {/* <a className="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a> */}
                 </div>
