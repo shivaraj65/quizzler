@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9ca2a369d8d0c0c7ea45c02158e952fc",
+    "revision": "c97e0252c45bb1478d2e6de7e13ea4e6",
     "url": "/quizzler/index.html"
   },
   {
-    "revision": "7952374c193b4dbc03f2",
-    "url": "/quizzler/static/css/main.ac1967e3.chunk.css"
+    "revision": "28bef771f4d5df1f4f95",
+    "url": "/quizzler/static/css/main.004d9094.chunk.css"
   },
   {
-    "revision": "fc210854bd473422c1b5",
-    "url": "/quizzler/static/js/2.d1aef5dd.chunk.js"
+    "revision": "c095431894a4f92f9b73",
+    "url": "/quizzler/static/js/2.dc2c1ab5.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/quizzler/static/js/2.d1aef5dd.chunk.js.LICENSE.txt"
+    "url": "/quizzler/static/js/2.dc2c1ab5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7952374c193b4dbc03f2",
-    "url": "/quizzler/static/js/main.7465e3cf.chunk.js"
+    "revision": "28bef771f4d5df1f4f95",
+    "url": "/quizzler/static/js/main.77a64d50.chunk.js"
   },
   {
     "revision": "e451629f73b72906b216",
@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/quizzler/static/media/quizzler logo.c41dda3f.png"
   },
   {
-    "revision": "8f1222e97240e3b9f48df0ff43c3c585",
-    "url": "/quizzler/static/media/wolf.8f1222e9.svg"
+    "revision": "62cc702d670088affac3e8c663baec4a",
+    "url": "/quizzler/static/media/wolf.62cc702d.svg"
   }
 ]);
